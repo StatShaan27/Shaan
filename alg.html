@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>📐 Analysis III | ISI B.Stat Sem-3</title>
+  <title>📐 Algebra | ISI B.Stat Sem-3</title>
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -36,19 +36,16 @@
     html {
       scroll-behavior: smooth;
     }
-
     body {
       background: linear-gradient(135deg, #000000, #1e293b, #111827);
       background-size: 400% 400%;
       animation: gradientShift 15s ease infinite;
     }
-
     @keyframes gradientShift {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
-
     details[open] summary::after {
       transform: rotate(90deg);
     }
@@ -59,176 +56,103 @@
 
   <!-- Header -->
   <header class="sticky top-0 z-50 bg-black/30 backdrop-blur border-b border-gray-700 shadow-md px-6 py-4 flex justify-between items-center">
-    <h1 class="text-2xl font-bold tracking-wide">📐 Analysis III</h1>
+    <h1 class="text-2xl font-bold tracking-wide">📘 Algebra</h1>
     <a href="https://statshaan27.github.io/Shaan/" class="text-sm text-gray-400 hover:text-white">← Back to Index</a>
   </header>
 
   <!-- Layout -->
   <div class="flex">
-    
-    <!-- Collapsible Ribbon Sidebar -->
+
+    <!-- Sidebar -->
     <aside class="w-64 p-4 border-r border-gray-800 bg-gray-900/40 backdrop-blur h-screen overflow-y-auto hidden md:block">
       <nav class="space-y-4 text-md">
         <details class="group" open>
-          <summary class="cursor-pointer font-semibold text-primary">Week 1</summary>
+          <summary class="cursor-pointer font-semibold text-primary">📘 Algebra</summary>
           <ul class="ml-4 mt-1 space-y-1 text-gray-300">
-            <li><a href="#sec1" class="hover:text-white">Limits</a></li>
-            <li><a href="#sec2" class="hover:text-white">Continuity</a></li>
+            <li><a href="#intro" class="hover:text-white">0th Class: What is Algebra?</a></li>
+            <!-- Future topics -->
+            <li><a href="#week1" class="hover:text-white">Week 1</a></li>
+            <li><a href="#week2" class="hover:text-white">Week 2</a></li>
           </ul>
         </details>
-        <details class="group">
-          <summary class="cursor-pointer font-semibold text-primary">Week 2</summary>
-          <ul class="ml-4 mt-1 space-y-1 text-gray-300">
-            <li><a href="#sec3" class="hover:text-white">Differentiability</a></li>
-            <li><a href="#sec4" class="hover:text-white">Mean Value Theorem</a></li>
-          </ul>
-        </details>
-        <!-- Add more weeks/sections as needed -->
       </nav>
     </aside>
 
-    <!-- Main Content Area -->
+    <!-- Main Content -->
     <main class="flex-1 p-6 overflow-x-auto">
       <section class="bg-white/5 backdrop-blur-sm p-6 rounded-2xl shadow-lg border border-gray-700">
-        <!-- 🧠 Content Goes Here -->
-        <!-- Just paste <section> blocks here for each note -->
-        <h2 class="text-xl font-semibold mb-4 text-primary">Welcome to Analysis III</h2>
-        <p class="text-gray-300">Use the collapsible sidebar on the left to jump between topics.</p>
-        <section>
-  <h4>21/7/25 – 0th class: What is Algebra? (Out of Syllabus)</h4>
 
-  <p>Let \( X (\neq \phi) \) be a set. A relation '~' on \( X \) is called an <strong>equivalence relation</strong> if:</p>
-  <ul>
-    <li>\( x \sim x \quad \forall x \in X \)</li>
-    <li>\( x \sim y \Rightarrow y \sim x \)</li>
-    <li>\( x \sim y \) and \( y \sim z \Rightarrow x \sim z \)</li>
-  </ul>
+        <!-- Introduction -->
+        <h2 class="text-xl font-semibold mb-4 text-primary" id="intro">🧠 0th Class: What is Algebra?</h2>
 
-  <p><strong>Equivalence class:</strong> For \( x \in X \), the equivalence class of \( x \) is 
-  \[ [x] = \{ y \in X \mid x \sim y \} \]</p>
+        <p class="text-gray-300 mb-4">Exploring the idea of algebra, equivalence, sets, and foundational arithmetic in \(\mathbb{N}\).</p>
 
-  <p><strong>Note:</strong> For \( x, y \in X \), either \( [x] = [y] \) or \( [x] \cap [y] = \phi \).<br>
-  \( X = \) disjoint union of equivalence classes.</p>
+        <!-- Notes -->
+        <section class="space-y-6 leading-relaxed text-gray-200">
 
-  <p><strong>Check:</strong> If \( a \in [x] \), then \( [x] = [a] \)</p>
+          <p>Let \( X (\neq \phi) \) be a set. A relation '~' on \( X \) is called an <strong>equivalence relation</strong> if:</p>
+          <ul class="list-disc ml-6">
+            <li>\( x \sim x \quad \forall x \in X \)</li>
+            <li>\( x \sim y \Rightarrow y \sim x \)</li>
+            <li>\( x \sim y \) and \( y \sim z \Rightarrow x \sim z \)</li>
+          </ul>
 
-  <p><strong>On the class of sets, define the successor operation</strong> \( S \) by:</p>
-  <p>\( S(A) = A \cup \{A\} \)</p>
-  <ul>
-    <li>\( 1 \rightarrow S(\phi) = \{\phi\} \)</li>
-    <li>\( 2 \rightarrow S(\{\phi\}) = \{\phi, \{\phi\}\} \)</li>
-    <li>\( 3 \rightarrow S(\{\phi, \{\phi\}\}) = \{\phi, \{\phi\}, \{\phi, \{\phi\}\} \)</li>
-  </ul>
+          <p><strong>Equivalence class:</strong> For \( x \in X \), the equivalence class of \( x \) is:
+          \[ [x] = \{ y \in X \mid x \sim y \} \]</p>
 
-  <p>If \( 0 \rightarrow \phi \), then:</p>
-  <ul>
-    <li>\( 1 \rightarrow \{0\} \)</li>
-    <li>\( 2 \rightarrow \{0, 1\} \)</li>
-    <li>\( 3 \rightarrow \{0, 1, 2\} \)</li>
-    <li>\( \mathbb{N} = \{0, 1, 2, 3, \ldots\} \)</li>
-  </ul>
+          <p><strong>Note:</strong> For \( x, y \in X \), either \( [x] = [y] \) or \( [x] \cap [y] = \phi \).<br>
+          Hence, \( X \) is the disjoint union of equivalence classes.</p>
 
-  <h4>Remark</h4>
-  <p>Every natural number is the set of all its predecessors.</p>
+          <p><strong>Check:</strong> If \( a \in [x] \), then \( [x] = [a] \)</p>
 
-  <h4>Define addition on \( \mathbb{N} \)</h4>
-  <ul>
-    <li>\( n + 0 = n \quad \forall n \in \mathbb{N} \)</li>
-    <li>\( n + S(m) = S(n + m) \) — recursively defined</li>
-  </ul>
-  <p><strong>Example:</strong> \( n + 1 = n + S(0) = S(n + 0) = S(n) \)</p>
+          <h4 class="text-lg font-semibold text-primary mt-8">Successor Operation on Sets</h4>
+          <p>Define \( S(A) = A \cup \{A\} \)</p>
+          <ul class="list-disc ml-6">
+            <li>\( 1 \rightarrow S(\phi) = \{\phi\} \)</li>
+            <li>\( 2 \rightarrow S(\{\phi\}) = \{\phi, \{\phi\}\} \)</li>
+            <li>\( 3 \rightarrow S(\{\phi, \{\phi\}\}) = \{\phi, \{\phi\}, \{\phi, \{\phi\}\} \)</li>
+          </ul>
 
-  <p><strong>\( \mathbb{N} \) satisfies the Peano's axioms:</strong></p>
-  <ul>
-    <li>\( 0 \) is a natural number.</li>
-    <li>The successor of a natural number is a natural number.</li>
-    <li>\( 0 \) is not the successor of any natural number.</li>
-    <li>\( S(n) = S(m) \Rightarrow n = m \)</li>
-    <li>If a statement is true for 0 and its being true for \( n \) implies its truth for \( S(n) \), then it is true for all natural numbers.</li>
-  </ul>
+          <p>If \( 0 \rightarrow \phi \), then:</p>
+          <ul class="list-disc ml-6">
+            <li>\( 1 \rightarrow \{0\} \)</li>
+            <li>\( 2 \rightarrow \{0, 1\} \)</li>
+            <li>\( 3 \rightarrow \{0, 1, 2\} \)</li>
+            <li>\( \mathbb{N} = \{0, 1, 2, 3, \ldots\} \)</li>
+          </ul>
 
-  <h4>Properties of \( \mathbb{N} \) with respect to '+' operation</h4>
-  <ul>
-    <li>\( n + (m + p) = (n + m) + p \)</li>
-    <li>\( n + 0 = 0 + n \quad \forall n \in \mathbb{N} \) <br><em>(1 and 2 together make a monoid)</em></li>
-    <li>\( n + m = m + n \) <br><em>(1–3 make an Abelian monoid)</em></li>
-    <li>\( n + m = n + p \Rightarrow m = p \) <br><em>(1–4 make a cancellative Abelian monoid)</em></li>
-  </ul>
+          <h4 class="text-lg font-semibold text-primary">Remark</h4>
+          <p>Every natural number is the set of all its predecessors.</p>
 
-  <h4>Embedding via Injection</h4>
-  <p>Let \( X, Y \) be sets. Suppose \( \phi: X \rightarrow Y \) is injective.<br>
-  We treat \( X \) as a subset of \( Y \) through the identification \( x \sim \phi(x) \), where \( \phi(x) \in Y \).</p>
+          <h4 class="text-lg font-semibold text-primary">Define Addition on \( \mathbb{N} \)</h4>
+          <ul class="list-disc ml-6">
+            <li>\( n + 0 = n \quad \forall n \in \mathbb{N} \)</li>
+            <li>\( n + S(m) = S(n + m) \) — recursive definition</li>
+          </ul>
+          <p><strong>Example:</strong> \( n + 1 = n + S(0) = S(n + 0) = S(n) \)</p>
+
+          <h4 class="text-lg font-semibold text-primary">Peano's Axioms</h4>
+          <ul class="list-disc ml-6">
+            <li>\( 0 \) is a natural number.</li>
+            <li>The successor of a natural number is a natural number.</li>
+            <li>\( 0 \) is not the successor of any natural number.</li>
+            <li>\( S(n) = S(m) \Rightarrow n = m \)</li>
+            <li>Induction: If true for 0 and true for \( n \Rightarrow \) true for \( S(n) \), then it holds for all \( n \in \mathbb{N} \).</li>
+          </ul>
+
+          <h4 class="text-lg font-semibold text-primary">Properties of \( \mathbb{N} \) with respect to '+' operation</h4>
+          <ul class="list-disc ml-6">
+            <li>\( n + (m + p) = (n + m) + p \)</li>
+            <li>\( n + 0 = 0 + n \) <br><em>(Forms a monoid with 1, 2)</em></li>
+            <li>\( n + m = m + n \) <br><em>(Forms an abelian monoid)</em></li>
+            <li>\( n + m = n + p \Rightarrow m = p \) <br><em>(Cancellative abelian monoid)</em></li>
+          </ul>
+
+          <h4 class="text-lg font-semibold text-primary">Embedding via Injection</h4>
+          <p>Let \( X, Y \) be sets. Suppose \( \phi: X \rightarrow Y \) is injective.<br>
+          We treat \( X \) as a subset of \( Y \) by identifying \( x \sim \phi(x) \), where \( \phi(x) \in Y \).</p>
+
         </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
       </section>
     </main>
 
@@ -236,7 +160,7 @@
 
   <!-- Footer -->
   <footer class="text-center text-sm py-4 text-gray-400 border-t border-gray-700 bg-black/30 backdrop-blur-md">
-    © 2025 Shaan | Analysis III | Tailwind ✦ MathJax ✦ GitHub Pages
+    © 2025 Shaan | Algebra Notes | Tailwind ✦ MathJax ✦ GitHub Pages
   </footer>
 
 </body>
