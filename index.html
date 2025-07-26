@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ISI B.Stat Sem-3 Notes</title>
+
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -13,67 +15,65 @@
           fontFamily: {
             sans: ['Inter', 'sans-serif'],
           },
-          backgroundImage: {
-            'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+          colors: {
+            primary: '#3b82f6',
           },
         },
       },
     }
   </script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-  <script defer src="assets/scripts.js"></script>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+
+  <!-- MathJax for LaTeX rendering -->
+  <script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
 </head>
-<body class="font-sans bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white min-h-screen">
+
+<body class="bg-gradient-to-br from-black via-gray-900 to-gray-800 text-white font-sans min-h-screen">
 
   <!-- Header -->
-  <header class="flex items-center justify-between px-6 py-4 border-b border-gray-700 shadow-lg bg-black/30 backdrop-blur-md">
+  <header class="sticky top-0 z-50 bg-black/30 backdrop-blur border-b border-gray-700 shadow-md px-6 py-4 flex justify-between items-center">
     <h1 class="text-3xl font-bold tracking-wide">📘 ISI B.Stat Sem-3 Notes</h1>
-    <button id="theme-toggle" class="px-3 py-2 bg-gray-700 rounded-xl hover:bg-gray-600 transition">
-      Toggle Theme
-    </button>
   </header>
 
-  <!-- Sidebar + Content -->
+  <!-- Layout -->
   <div class="flex flex-col md:flex-row">
+    
     <!-- Sidebar -->
-    <nav class="w-full md:w-64 p-4 bg-black/40 backdrop-blur-md border-r border-gray-700">
-      <ul class="space-y-3 text-lg">
-        <li><a href="notes/ana3.html" class="block px-4 py-2 rounded-lg hover:bg-gray-700 transition">📐 Analysis III</a></li>
-        <li><a href="notes/stat3.html" class="block px-4 py-2 rounded-lg hover:bg-gray-700 transition">📊 Statistics III</a></li>
-        <li><a href="notes/elective.html" class="block px-4 py-2 rounded-lg hover:bg-gray-700 transition">🧠 Elective</a></li>
-        <li><a href="notes/project.html" class="block px-4 py-2 rounded-lg hover:bg-gray-700 transition">📁 Project</a></li>
-      </ul>
-    </nav>
+    <aside class="w-full md:w-64 p-4 border-r border-gray-800 bg-gray-900/40 backdrop-blur">
+      <nav class="space-y-4 text-lg">
+        <a href="notes/ana3.html" class="block px-4 py-2 rounded-lg hover:bg-gray-700 transition">📐 Analysis III</a>
+        <a href="notes/stat3.html" class="block px-4 py-2 rounded-lg hover:bg-gray-700 transition">📊 Statistics III</a>
+        <a href="notes/elective.html" class="block px-4 py-2 rounded-lg hover:bg-gray-700 transition">🧠 Elective</a>
+        <a href="notes/project.html" class="block px-4 py-2 rounded-lg hover:bg-gray-700 transition">📁 Project</a>
+      </nav>
+    </aside>
 
     <!-- Main Content -->
     <main class="flex-1 p-6">
-      <section class="bg-white/10 p-6 rounded-2xl shadow-xl backdrop-blur-lg border border-gray-700">
+      <section class="bg-white/5 backdrop-blur-sm p-6 rounded-2xl shadow-lg border border-gray-700">
         <h2 class="text-2xl font-semibold mb-4">Welcome to Semester 3 Notes</h2>
-        <p class="text-gray-300 leading-relaxed">
-          This website hosts interactive, LaTeX-rendered notes from B.Stat Semester 3 at ISI Kolkata. Navigate using the sidebar to explore topics from Analysis III, Statistics III, Electives, and more.
+        <p class="text-gray-300 mb-4">
+          This is a curated collection of notes from my third semester at ISI Kolkata. Each subject has its own dedicated page with neatly typeset equations, interactive visuals (coming soon), and reference breakdowns.
         </p>
-        <div class="mt-6">
-          <h3 class="text-xl font-semibold mb-2">Features</h3>
-          <ul class="list-disc pl-6 text-gray-400">
-            <li>Dark/light mode toggle</li>
-            <li>LaTeX math rendering with MathJax</li>
-            <li>Clean and responsive design</li>
-            <li>Modular subject-wise pages</li>
-            <li>Code snippets, graphs, and animations</li>
-          </ul>
-        </div>
+        <h3 class="text-xl font-semibold mb-2">Highlights:</h3>
+        <ul class="list-disc pl-6 text-gray-400">
+          <li>Latex-rendered equations via MathJax</li>
+          <li>Responsive and mobile-friendly design</li>
+          <li>Dark-mode only (for those who code at night 🌙)</li>
+          <li>Modular and expandable — just like your brain 🧠</li>
+        </ul>
       </section>
     </main>
   </div>
 
   <!-- Footer -->
-  <footer class="text-center text-sm py-4 text-gray-400 border-t border-gray-700 bg-black/30 backdrop-blur-md">
-    © 2025 Shaan | Built with ❤️ and Tailwind CSS
+  <footer class="text-center text-sm py-4 mt-6 text-gray-400 border-t border-gray-700 bg-black/30 backdrop-blur-md">
+    © 2025 Shaan | Crafted with Tailwind CSS & Coffee ☕
   </footer>
 
-  <!-- MathJax (optional, for LaTeX math) -->
-  <script type="text/javascript" id="MathJax-script" async
-    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
-  </script>
 </body>
 </html>
