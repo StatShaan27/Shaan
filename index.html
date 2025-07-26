@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ISI B.Stat Sem-3 Notes</title>
+  <title>📚 ISI B.Stat Sem-3 Notes | Shaan</title>
 
-  <!-- Tailwind CSS CDN -->
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -20,19 +20,49 @@
           },
         },
       },
-    }
+    };
   </script>
 
-  <!-- Google Font -->
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
 
-  <!-- MathJax for LaTeX rendering -->
-  <script type="text/javascript" id="MathJax-script" async
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+
+  <!-- Meta SEO -->
+  <meta name="description" content="Curated interactive notes for Semester 3 of B.Stat at ISI Kolkata. Covers Analysis III, Statistics, Probability, Algebra, and more." />
+  <meta name="author" content="Shaan" />
+  <meta property="og:title" content="ISI B.Stat Sem-3 Notes by Shaan" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://StatShaan27.github.io/" />
+  <meta property="og:description" content="Well-structured, LaTeX-powered and mobile-friendly dark-mode notes for ISI Kolkata Semester 3." />
+
+  <!-- MathJax -->
+  <script id="MathJax-script" async
     src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
   </script>
+
+  <!-- Custom Styles -->
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: linear-gradient(135deg, #000000, #1e293b, #111827);
+      background-size: 400% 400%;
+      animation: gradientShift 15s ease infinite;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+  </style>
 </head>
 
-<body class="bg-gradient-to-br from-black via-gray-900 to-gray-800 text-white font-sans min-h-screen">
+<body class="text-white font-sans min-h-screen">
 
   <!-- Header -->
   <header class="sticky top-0 z-50 bg-black/30 backdrop-blur border-b border-gray-700 shadow-md px-6 py-4 flex justify-between items-center">
@@ -46,9 +76,11 @@
     <aside class="w-full md:w-64 p-4 border-r border-gray-800 bg-gray-900/40 backdrop-blur">
       <nav class="space-y-4 text-lg">
         <a href="notes/ana3.html" class="block px-4 py-2 rounded-lg hover:bg-gray-700 transition">📐 Analysis III</a>
-        <a href="notes/stat3.html" class="block px-4 py-2 rounded-lg hover:bg-gray-700 transition">📊 Statistics III</a>
-        <a href="notes/elective.html" class="block px-4 py-2 rounded-lg hover:bg-gray-700 transition">🧠 Elective</a>
-        <a href="notes/project.html" class="block px-4 py-2 rounded-lg hover:bg-gray-700 transition">📁 Project</a>
+        <a href="notes/st3.html" class="block px-4 py-2 rounded-lg hover:bg-gray-700 transition">📊 Statistics III</a>
+        <a href="notes/pt3.html" class="block px-4 py-2 rounded-lg hover:bg-gray-700 transition">🎲 Probability Theory III</a>
+        <a href="notes/alg.html" class="block px-4 py-2 rounded-lg hover:bg-gray-700 transition">🔣 Algebra</a>
+        <a href="notes/bio.html" class="block px-4 py-2 rounded-lg hover:bg-gray-700 transition">🧬 Elective (Biology)</a>
+        <a href="notes/prj.html" class="block px-4 py-2 rounded-lg hover:bg-gray-700 transition">📁 Project</a>
       </nav>
     </aside>
 
@@ -63,7 +95,7 @@
         <ul class="list-disc pl-6 text-gray-400">
           <li>Latex-rendered equations via MathJax</li>
           <li>Responsive and mobile-friendly design</li>
-          <li>Dark-mode only (for those who code at night 🌙)</li>
+          <li>Dark-mode only (night-friendly 🌙)</li>
           <li>Modular and expandable — just like your brain 🧠</li>
         </ul>
       </section>
@@ -72,7 +104,7 @@
 
   <!-- Footer -->
   <footer class="text-center text-sm py-4 mt-6 text-gray-400 border-t border-gray-700 bg-black/30 backdrop-blur-md">
-    © 2025 Shaan | Crafted with Tailwind CSS & Coffee ☕
+    © 2025 Shaan | Crafted with Tailwind CSS & ☕
   </footer>
 
 </body>
