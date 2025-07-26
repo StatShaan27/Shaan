@@ -209,6 +209,31 @@
 
 <p><strong>Exercise:</strong> Check that if \([(a,b)] = [(a',b')]\) and \([(c,d)] = [(c',d')]\), then</p>
 <p>\([(ad + bc, bd)] = [(a'd' + b'c', b'd')]\)</p>
+  <h4 class="text-lg font-semibold text-primary mt-8">Multiplication on \( \mathbb{Q} \)</h4>
+  <p>\( [(a,b)] \cdot [(c,d)] = [(ac, bd)] \)</p>
+
+  <p>Define \( \phi: \mathbb{Z} \rightarrow \mathbb{Q} \) by \( \phi(a) = [(a,1)] \)</p>
+  <ul class="list-disc ml-6">
+    <li>\( \phi \) is injective</li>
+    <li>\( \phi(a + b) = \phi(a) + \phi(b) \)</li>
+    <li>\( \phi(a \cdot b) = \phi(a) \cdot \phi(b) \)</li>
+  </ul>
+
+  <p>The multiplicative identity in \( \mathbb{Q} \) is \( [(1,1)] \).</p>
+
+  <h4 class="text-lg font-semibold text-primary">Claim</h4>
+  <p>Every non-zero element of \( \mathbb{Q} \) has a multiplicative inverse.</p>
+
+  <h4 class="text-lg font-semibold text-primary">Proof</h4>
+  <p>Take \( [(a,b)] \), where \( a \neq 0 \), \( b \neq 0 \).</p>
+  <p>\( [(a,b)] \cdot [(b,a)] = [(1,1)] \)</p>
+  <p>\( \Rightarrow [(b,a)] \) is the multiplicative inverse of \( [(a,b)] \).</p>
+
+  <h4 class="text-lg font-semibold text-primary">Remark</h4>
+  <p>Identify \( a \in \mathbb{Z} \) as \( [(a,1)] \) and write \( [(1,b)] \) as \( \frac{1}{b} \).</p>
+  <p>For \( [(m,n)] \in \mathbb{Q} \):</p>
+  <p>\( [(m,n)] = [(m,1)] \cdot [(1,n)] = \frac{m}{n} \)</p>
+
         </section>
       </section>
     </main>
