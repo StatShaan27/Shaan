@@ -88,154 +88,152 @@
         <p class="text-gray-300 mb-4">Exploring the idea of algebra, equivalence, sets, and foundational arithmetic in \(\mathbb{N}\).</p>
 
         <!-- Notes -->
-        <section class="space-y-6 leading-relaxed text-gray-200">
+        <section class="mt-8">
+  <h2 id="class0" class="text-2xl font-bold text-primary">🧠 0th Class: What is Algebra?</h2>
+  <p class="mt-4 text-gray-200">
+    Exploring the idea of algebra, equivalence, sets, and foundational arithmetic in <span class="italic">\(\mathbb{N}\)</span>.
+  </p>
+  <h3 class="text-xl font-semibold mt-6 text-primary">Equivalence Relation</h3>
+  <ul class="list-disc ml-6 mt-2 text-gray-200">
+    <li>\(x \sim x\quad\forall x\in X\)</li>
+    <li>\(x \sim y \Rightarrow y \sim x\)</li>
+    <li>\(x \sim y\) and \(y \sim z \Rightarrow x \sim z\)</li>
+  </ul>
+  <p class="mt-4 text-gray-200">
+    <strong>Equivalence class:</strong> 
+    \[
+      [x] = \{\,y\in X\mid x\sim y\}
+    \]
+  </p>
+  <p class="mt-2 text-gray-200"><strong>Note:</strong> Either \([x]=[y]\) or \([x]\cap[y]=\phi\), so \(X\) is the disjoint union of its classes.</p>
+  <p class="mt-2 text-gray-200"><strong>Check:</strong> If \(a\in[x]\) then \([x]=[a]\).</p>
+  <hr class="border-gray-700 my-8" />
 
-          <p>Let \( X (\neq \phi) \) be a set. A relation '~' on \( X \) is called an <strong>equivalence relation</strong> if:</p>
-          <ul class="list-disc ml-6">
-            <li>\( x \sim x \quad \forall x \in X \)</li>
-            <li>\( x \sim y \Rightarrow y \sim x \)</li>
-            <li>\( x \sim y \) and \( y \sim z \Rightarrow x \sim z \)</li>
-          </ul>
+  <h2 id="successor" class="text-2xl font-bold text-primary">Successor Operation on Sets</h2>
+  <p class="mt-4 text-gray-200">Define \(S(A)=A\cup\{A\}\).</p>
+  <ul class="list-disc ml-6 mt-2 text-gray-200">
+    <li>\(1\rightarrow S(\phi)=\{\phi\}\)</li>
+    <li>\(2\rightarrow S(\{\phi\})=\{\phi,\{\phi\}\}\)</li>
+    <li>\(3\rightarrow S(\{\phi,\{\phi\}\})=\{\phi,\{\phi\},\{\phi,\{\phi\}\}\}\)</li>
+  </ul>
+  <p class="mt-4 text-gray-200">If \(0\rightarrow\phi\), then:</p>
+  <ul class="list-disc ml-6 mt-2 text-gray-200">
+    <li>\(1\rightarrow\{0\}\)</li>
+    <li>\(2\rightarrow\{0,1\}\)</li>
+    <li>\(3\rightarrow\{0,1,2\}\)</li>
+    <li>\(\mathbb{N}=\{0,1,2,3,\dots\}\)</li>
+  </ul>
+  <p class="mt-4 text-gray-200"><strong>Remark:</strong> Every natural number is the set of all its predecessors.</p>
+  <hr class="border-gray-700 my-8" />
 
-          <p><strong>Equivalence class:</strong> For \( x \in X \), the equivalence class of \( x \) is:
-          \[ [x] = \{ y \in X \mid x \sim y \} \]</p>
-
-          <p><strong>Note:</strong> For \( x, y \in X \), either \( [x] = [y] \) or \( [x] \cap [y] = \phi \).<br>
-          Hence, \( X \) is the disjoint union of equivalence classes.</p>
-
-          <p><strong>Check:</strong> If \( a \in [x] \), then \( [x] = [a] \)</p>
-
-          <h4 class="text-lg font-semibold text-primary mt-8">Successor Operation on Sets</h4>
-          <p>Define \( S(A) = A \cup \{A\} \)</p>
-          <ul class="list-disc ml-6">
-            <li>\( 1 \rightarrow S(\phi) = \{\phi\} \)</li>
-            <li>\( 2 \rightarrow S(\{\phi\}) = \{\phi, \{\phi\}\} \)</li>
-            <li>\( 3 \rightarrow S(\{\phi, \{\phi\}\}) = \{\phi, \{\phi\}, \{\phi, \{\phi\}\} \)</li>
-          </ul>
-
-          <p>If \( 0 \rightarrow \phi \), then:</p>
-          <ul class="list-disc ml-6">
-            <li>\( 1 \rightarrow \{0\} \)</li>
-            <li>\( 2 \rightarrow \{0, 1\} \)</li>
-            <li>\( 3 \rightarrow \{0, 1, 2\} \)</li>
-            <li>\( \mathbb{N} = \{0, 1, 2, 3, \ldots\} \)</li>
-          </ul>
-
-          <h4 class="text-lg font-semibold text-primary">Remark</h4>
-          <p>Every natural number is the set of all its predecessors.</p>
-
-          <h4 class="text-lg font-semibold text-primary">Define Addition on \( \mathbb{N} \)</h4>
-          <ul class="list-disc ml-6">
-            <li>\( n + 0 = n \quad \forall n \in \mathbb{N} \)</li>
-            <li>\( n + S(m) = S(n + m) \) — recursive definition</li>
-          </ul>
-          <p><strong>Example:</strong> \( n + 1 = n + S(0) = S(n + 0) = S(n) \)</p>
-
-          <h4 class="text-lg font-semibold text-primary">Peano's Axioms</h4>
-          <ul class="list-disc ml-6">
-            <li>\( 0 \) is a natural number.</li>
-            <li>The successor of a natural number is a natural number.</li>
-            <li>\( 0 \) is not the successor of any natural number.</li>
-            <li>\( S(n) = S(m) \Rightarrow n = m \)</li>
-            <li>Induction: If true for 0 and true for \( n \Rightarrow \) true for \( S(n) \), then it holds for all \( n \in \mathbb{N} \).</li>
-          </ul>
-
-          <h4 class="text-lg font-semibold text-primary">Properties of \( \mathbb{N} \) with respect to '+' operation</h4>
-          <ul class="list-disc ml-6">
-            <li>\( n + (m + p) = (n + m) + p \)</li>
-            <li>\( n + 0 = 0 + n \) <br><em>(Forms a monoid with 1, 2)</em></li>
-            <li>\( n + m = m + n \) <br><em>(Forms an abelian monoid)</em></li>
-            <li>\( n + m = n + p \Rightarrow m = p \) <br><em>(Cancellative abelian monoid)</em></li>
-          </ul>
-
-          <h4 class="text-lg font-semibold text-primary">Embedding via Injection</h4>
-          <p>Let \( X, Y \) be sets. Suppose \( \phi: X \rightarrow Y \) is injective.<br>
-          We treat \( X \) as a subset of \( Y \) by identifying \( x \sim \phi(x) \), where \( \phi(x) \in Y \).</p>
-        <h4 class="text-lg font-semibold text-primary mt-8">Equivalence Classes and Integers</h4>
-<p>Let \( X = \mathbb{N} \times \mathbb{N} \). Define a relation \(\sim\) on \(X\) by</p>
-<p>\((a,b) \sim (a',b')\) iff \(a + b' = b + a'\).</p>
-<p><strong>Check:</strong> This is an equivalence relation.</p>
-<p>\(Y =\) set of equivalence classes \(= \{[(a,b)] \mid a, b \in \mathbb{N}\}\)</p>
-
-<p>Define addition on \(Y\) by</p>
-<p>\([(a,b)] + [(c,d)] = [(a+c), (b+d)]\)</p>
-
-<p>This is well defined if</p>
-<p>\([(a,b)] = [(a',b')]\) and \([(c,d)] = [(c',d')]\)</p>
-<p>\(\Rightarrow [(a,b)] + [(c,d)] = [(a',b')] + [(c',d')]\)</p>
-
-<p><strong>Note:</strong> This can be easily checked.</p>
-<p>\(Y =\) set of equivalence classes. From now on, write \(Y = \mathbb{Z}\).</p>
-<p>\((\mathbb{Z}, +)\) satisfies:</p>
-<ul class="list-disc ml-6">
-  <li>(i) Associativity</li>
-  <li>(ii) \([(a,b)] + [(0,0)] = [(a,b)]\)</li>
-  <li>(iii) Abelian property</li>
-</ul>
-
-<p><strong>Remark:</strong> For any \(a \in \mathbb{N}\), \([(a,a)] = [(0,0)]\)</p>
-
-<p>Define \(\phi: \mathbb{N} \rightarrow \mathbb{Z}\) such that \(\phi(n) = [(n,0)]\).</p>
-<ul class="list-disc ml-6">
-  <li>\(\phi\) is injective</li>
-  <li>\(\phi(a) + \phi(b) = \phi(a+b)\)</li>
-</ul>
-
-<p>We shall identify \(a \in \mathbb{N}\) with its image \([(a,0)]\). We shall write \(-a\) for \([(0,a)]\).</p>
-
-<h4 class="text-lg font-semibold text-primary mt-8">Integer Properties</h4>
-<p>\([(a,b)] = [(a,0)] + [(0,b)] \Rightarrow [(a,b)] = a - b\)</p>
-<p><strong>Conclusion:</strong> Every integer is the difference of two natural numbers.</p>
-<p><strong>Note:</strong> Important property of \(\mathbb{Z}\):</p>
-<p>\([(a,b)] + [(b,a)] = [(0,0)]\)</p>
-<p><strong>Additive Inverse:</strong> Every element of \(\mathbb{Z}\) has another element in \(\mathbb{Z}\) such that their sum is \([(0,0)]\).</p>
-
-<h4 class="text-lg font-semibold text-primary mt-8">Multiplication</h4>
-<p><strong>Multiplication on \(\mathbb{N}\):</strong></p>
-<ul class="list-disc ml-6">
-  <li>\(n \times 0 = 0 \quad \forall n \in \mathbb{N}\)</li>
-  <li>\(n \times S(m) = n \times m + n\)</li>
-</ul>
-<p>The multiplication extends to \(\mathbb{Z}\) and can be checked easily.</p>
-
-<h4 class="text-lg font-semibold text-primary mt-8">Construction of Rational Numbers</h4>
-<p>Let \(X = \mathbb{Z} \times (\mathbb{Z} \setminus \{0\})\).</p>
-<p>Define a relation on \(X\) by \((a,b) \sim (a',b')\) iff \(ab' = ba'\).</p>
-<p>This is also an equivalence relation on \(X\).</p>
-<p>\(Q =\) set of equivalence classes \(= \{[(a,b)] \mid a \in \mathbb{Z}, b \in \mathbb{Z} \setminus \{0\}\}\)</p>
-
-<p>Define \(+\) on \(Q\) by:</p>
-<p>\([(a,b)] + [(c,d)] = [(ad + bc, bd)]\)</p>
-
-<p><strong>Exercise:</strong> Check that if \([(a,b)] = [(a',b')]\) and \([(c,d)] = [(c',d')]\), then</p>
-<p>\([(ad + bc, bd)] = [(a'd' + b'c', b'd')]\)</p>
-  <h4 class="text-lg font-semibold text-primary mt-8">Multiplication on \( \mathbb{Q} \)</h4>
-  <p>\( [(a,b)] \cdot [(c,d)] = [(ac, bd)] \)</p>
-
-  <p>Define \( \phi: \mathbb{Z} \rightarrow \mathbb{Q} \) by \( \phi(a) = [(a,1)] \)</p>
-  <ul class="list-disc ml-6">
-    <li>\( \phi \) is injective</li>
-    <li>\( \phi(a + b) = \phi(a) + \phi(b) \)</li>
-    <li>\( \phi(a \cdot b) = \phi(a) \cdot \phi(b) \)</li>
+  <h2 id="peano" class="text-2xl font-bold text-primary">Peano’s Axioms & Arithmetic</h2>
+  <h3 class="text-xl font-semibold mt-6 text-primary">Peano’s Axioms</h3>
+  <ul class="list-disc ml-6 mt-2 text-gray-200">
+    <li>0 is a natural number.</li>
+    <li>Successor of a natural number is a natural number.</li>
+    <li>0 is not the successor of any natural number.</li>
+    <li>\(S(n)=S(m)\Rightarrow n=m\)</li>
+    <li>Induction: True for 0 and true for \(n\Rightarrow\) true for \(S(n)\) ⇒ holds ∀\(n\).</li>
   </ul>
 
-  <p>The multiplicative identity in \( \mathbb{Q} \) is \( [(1,1)] \).</p>
+  <h3 class="text-xl font-semibold mt-6 text-primary">Addition on \(\mathbb{N}\)</h3>
+  <ul class="list-disc ml-6 mt-2 text-gray-200">
+    <li>\(n+0=n\quad\forall n\in\mathbb{N}\)</li>
+    <li>\(n+S(m)=S(n+m)\) — recursive</li>
+  </ul>
+  <p class="mt-2 text-gray-200"><strong>Example:</strong> \(n+1=n+S(0)=S(n)\).</p>
 
-  <h4 class="text-lg font-semibold text-primary">Claim</h4>
-  <p>Every non-zero element of \( \mathbb{Q} \) has a multiplicative inverse.</p>
+  <h3 class="text-xl font-semibold mt-6 text-primary">Multiplication on \(\mathbb{N}\)</h3>
+  <ul class="list-disc ml-6 mt-2 text-gray-200">
+    <li>\(n\times0=0\quad\forall n\in\mathbb{N}\)</li>
+    <li>\(n\times S(m)=n\times m+n\)</li>
+  </ul>
 
-  <h4 class="text-lg font-semibold text-primary">Proof</h4>
-  <p>Take \( [(a,b)] \), where \( a \neq 0 \), \( b \neq 0 \).</p>
-  <p>\( [(a,b)] \cdot [(b,a)] = [(1,1)] \)</p>
-  <p>\( \Rightarrow [(b,a)] \) is the multiplicative inverse of \( [(a,b)] \).</p>
+  <h3 class="text-xl font-semibold mt-6 text-primary">Properties under \(+\)</h3>
+  <ul class="list-disc ml-6 mt-2 text-gray-200">
+    <li>\(n+(m+p)=(n+m)+p\)</li>
+    <li>\(n+0=0+n\) <em>(monoid with axioms 1 & 2)</em></li>
+    <li>\(n+m=m+n\) <em>(abelian monoid)</em></li>
+    <li>\(n+m=n+p\Rightarrow m=p\) <em>(cancellative abelian monoid)</em></li>
+  </ul>
+  <hr class="border-gray-700 my-8" />
 
-  <h4 class="text-lg font-semibold text-primary">Remark</h4>
-  <p>Identify \( a \in \mathbb{Z} \) as \( [(a,1)] \) and write \( [(1,b)] \) as \( \frac{1}{b} \).</p>
-  <p>For \( [(m,n)] \in \mathbb{Q} \):</p>
-  <p>\( [(m,n)] = [(m,1)] \cdot [(1,n)] = \frac{m}{n} \)</p>
+  <h2 id="embedding" class="text-2xl font-bold text-primary">Embedding via Injection</h2>
+  <p class="mt-4 text-gray-200">
+    Let \(X,Y\) be sets and \(\phi:X\to Y\) injective. Identify \(x\in X\) with \(\phi(x)\) to view \(X\subset Y\).
+  </p>
+  <hr class="border-gray-700 my-8" />
 
-        </section>
-      </section>
+  <h2 id="integers" class="text-2xl font-bold text-primary">Equivalence Classes & Integers</h2>
+  <p class="mt-4 text-gray-200">
+    Let \(X=\mathbb{N}\times\mathbb{N}\). Define \((a,b)\sim(a',b')\) iff \(a+b'=b+a'\).
+  </p>
+  <p class="mt-2 text-gray-200"><strong>Check:</strong> It’s an equivalence relation.</p>
+  <p class="mt-2 text-gray-200">
+    Classes \(Y=\{[(a,b)]\mid a,b\in\mathbb{N}\}\). Define 
+    \[
+      [(a,b)]+[(c,d)]=[(a+c,\;b+d)].
+    \]
+  </p>
+  <p class="mt-2 text-gray-200">
+    Well-defined: if \([(a,b)]=[(a',b')]\) and \([(c,d)]=[(c',d')]\), then sums coincide.
+  </p>
+  <p class="mt-2 text-gray-200">Hence \(Y=\mathbb{Z}\). \((\mathbb{Z},+)\) is associative, has identity \([(0,0)]\), and is Abelian.</p>
+  <p class="mt-2 text-gray-200"><strong>Remark:</strong> \([(a,a)]=[(0,0)]\).</p>
+  <p class="mt-2 text-gray-200">
+    Embed via \(\phi:\mathbb{N}\to\mathbb{Z},\ \phi(n)=[(n,0)]\). Then \(\phi\) is injective and \(\phi(a)+\phi(b)=\phi(a+b)\). We identify \(a\) with \([(a,0)]\) and write \(-a\) for \([(0,a)]\).
+  </p>
+  <hr class="border-gray-700 my-8" />
+
+  <h2 id="rationals" class="text-2xl font-bold text-primary">Construction of Rational Numbers</h2>
+  <p class="mt-4 text-gray-200">
+    Let \(X=\mathbb{Z}\times(\mathbb{Z}\setminus\{0\})\). Define \((a,b)\sim(a',b')\) iff \(ab'=ba'\). Then 
+    \(\mathbb{Q}=\{[(a,b)]\}\) with
+    \[
+      [(a,b)]+[(c,d)]=[(ad+bc,\;bd)].
+    \]
+  </p>
+  <p class="mt-2 text-gray-200">Check well‑definedness similarly.</p>
+  <hr class="border-gray-700 my-8" />
+
+  <h2 id="qmult" class="text-2xl font-bold text-primary">Multiplication on \(\mathbb{Q}\)</h2>
+  <p class="mt-4 text-gray-200">
+    \[
+      [(a,b)]\cdot[(c,d)] = [(ac,\;bd)].
+    \]
+  </p>
+  <p class="mt-4 text-gray-200">
+    Embed \(\phi:\mathbb{Z}\to\mathbb{Q},\ \phi(a)=[(a,1)]\). Then:
+  </p>
+  <ul class="list-disc ml-6 mt-2 text-gray-200">
+    <li>\(\phi\) is injective</li>
+    <li>\(\phi(a+b)=\phi(a)+\phi(b)\)</li>
+    <li>\(\phi(a\cdot b)=\phi(a)\cdot\phi(b)\)</li>
+  </ul>
+  <p class="mt-4 text-gray-200">Identity is \([(1,1)]\).</p>
+
+  <h3 class="text-xl font-semibold mt-6 text-primary">Claim</h3>
+  <p class="mt-2 text-gray-200">Every non‑zero rational has a multiplicative inverse.</p>
+
+  <h3 class="text-xl font-semibold mt-4 text-primary">Proof</h3>
+  <p class="mt-2 text-gray-200">
+    For \(a,b\neq0\), 
+    \[
+      [(a,b)]\cdot[(b,a)]=[(1,1)],
+    \]
+    so \([(b,a)]\) is the inverse.
+  </p>
+
+  <h3 class="text-xl font-semibold mt-6 text-primary">Remark</h3>
+  <p class="mt-2 text-gray-200">
+    Identify \(a\in\mathbb{Z}\) as \([(a,1)]\), write \([(1,b)]\) as \(\tfrac1b\). Then 
+    \[
+      [(m,n)] = [(m,1)]\cdot[(1,n)] = \tfrac mn.
+    \]
+  </p>
+</section></section>
+
+
     </main>
 
   </div>
