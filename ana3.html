@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>📐 Analysis III | ISI B.Stat Sem-3</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            primary: '#3b82f6',
+          },
+        },
+      },
+    };
+  </script>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="icon" href="/assets/favicon.png" />
+
+  <!-- MathJax -->
+  <script id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <!-- Custom Styles -->
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: linear-gradient(135deg, #000000, #1e293b, #111827);
+      background-size: 400% 400%;
+      animation: gradientShift 15s ease infinite;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    details[open] summary::after {
+      transform: rotate(90deg);
+    }
+  </style>
+</head>
+
+<body class="text-white font-sans min-h-screen">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 bg-black/30 backdrop-blur border-b border-gray-700 shadow-md px-6 py-4 flex justify-between items-center">
+    <h1 class="text-2xl font-bold tracking-wide">📐 Analysis III</h1>
+    <a href="/index.html" class="text-sm text-gray-400 hover:text-white">← Back to Index</a>
+  </header>
+
+  <!-- Layout -->
+  <div class="flex">
+    
+    <!-- Collapsible Ribbon Sidebar -->
+    <aside class="w-64 p-4 border-r border-gray-800 bg-gray-900/40 backdrop-blur h-screen overflow-y-auto hidden md:block">
+      <nav class="space-y-4 text-md">
+        <details class="group" open>
+          <summary class="cursor-pointer font-semibold text-primary">Week 1</summary>
+          <ul class="ml-4 mt-1 space-y-1 text-gray-300">
+            <li><a href="#sec1" class="hover:text-white">Limits</a></li>
+            <li><a href="#sec2" class="hover:text-white">Continuity</a></li>
+          </ul>
+        </details>
+        <details class="group">
+          <summary class="cursor-pointer font-semibold text-primary">Week 2</summary>
+          <ul class="ml-4 mt-1 space-y-1 text-gray-300">
+            <li><a href="#sec3" class="hover:text-white">Differentiability</a></li>
+            <li><a href="#sec4" class="hover:text-white">Mean Value Theorem</a></li>
+          </ul>
+        </details>
+        <!-- Add more weeks/sections as needed -->
+      </nav>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 p-6 overflow-x-auto">
+      <section class="bg-white/5 backdrop-blur-sm p-6 rounded-2xl shadow-lg border border-gray-700">
+        <!-- 🧠 Content Goes Here -->
+        <!-- Just paste <section> blocks here for each note -->
+        <h2 class="text-xl font-semibold mb-4 text-primary">Welcome to Analysis III</h2>
+        <p class="text-gray-300">Use the collapsible sidebar on the left to jump between topics.</p>
+      </section>
+    </main>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="text-center text-sm py-4 text-gray-400 border-t border-gray-700 bg-black/30 backdrop-blur-md">
+    © 2025 Shaan | Analysis III | Tailwind ✦ MathJax ✦ GitHub Pages
+  </footer>
+
+</body>
+</html>
