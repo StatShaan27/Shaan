@@ -151,7 +151,64 @@
           <h4 class="text-lg font-semibold text-primary">Embedding via Injection</h4>
           <p>Let \( X, Y \) be sets. Suppose \( \phi: X \rightarrow Y \) is injective.<br>
           We treat \( X \) as a subset of \( Y \) by identifying \( x \sim \phi(x) \), where \( \phi(x) \in Y \).</p>
+        <h4 class="text-lg font-semibold text-primary mt-8">Equivalence Classes and Integers</h4>
+<p>Let \( X = \mathbb{N} \times \mathbb{N} \). Define a relation \(\sim\) on \(X\) by</p>
+<p>\((a,b) \sim (a',b')\) iff \(a + b' = b + a'\).</p>
+<p><strong>Check:</strong> This is an equivalence relation.</p>
+<p>\(Y =\) set of equivalence classes \(= \{[(a,b)] \mid a, b \in \mathbb{N}\}\)</p>
 
+<p>Define addition on \(Y\) by</p>
+<p>\([(a,b)] + [(c,d)] = [(a+c), (b+d)]\)</p>
+
+<p>This is well defined if</p>
+<p>\([(a,b)] = [(a',b')]\) and \([(c,d)] = [(c',d')]\)</p>
+<p>\(\Rightarrow [(a,b)] + [(c,d)] = [(a',b')] + [(c',d')]\)</p>
+
+<p><strong>Note:</strong> This can be easily checked.</p>
+<p>\(Y =\) set of equivalence classes. From now on, write \(Y = \mathbb{Z}\).</p>
+<p>\((\mathbb{Z}, +)\) satisfies:</p>
+<ul class="list-disc ml-6">
+  <li>(i) Associativity</li>
+  <li>(ii) \([(a,b)] + [(0,0)] = [(a,b)]\)</li>
+  <li>(iii) Abelian property</li>
+</ul>
+
+<p><strong>Remark:</strong> For any \(a \in \mathbb{N}\), \([(a,a)] = [(0,0)]\)</p>
+
+<p>Define \(\phi: \mathbb{N} \rightarrow \mathbb{Z}\) such that \(\phi(n) = [(n,0)]\).</p>
+<ul class="list-disc ml-6">
+  <li>\(\phi\) is injective</li>
+  <li>\(\phi(a) + \phi(b) = \phi(a+b)\)</li>
+</ul>
+
+<p>We shall identify \(a \in \mathbb{N}\) with its image \([(a,0)]\). We shall write \(-a\) for \([(0,a)]\).</p>
+
+<h4 class="text-lg font-semibold text-primary mt-8">Integer Properties</h4>
+<p>\([(a,b)] = [(a,0)] + [(0,b)] \Rightarrow [(a,b)] = a - b\)</p>
+<p><strong>Conclusion:</strong> Every integer is the difference of two natural numbers.</p>
+<p><strong>Note:</strong> Important property of \(\mathbb{Z}\):</p>
+<p>\([(a,b)] + [(b,a)] = [(0,0)]\)</p>
+<p><strong>Additive Inverse:</strong> Every element of \(\mathbb{Z}\) has another element in \(\mathbb{Z}\) such that their sum is \([(0,0)]\).</p>
+
+<h4 class="text-lg font-semibold text-primary mt-8">Multiplication</h4>
+<p><strong>Multiplication on \(\mathbb{N}\):</strong></p>
+<ul class="list-disc ml-6">
+  <li>\(n \times 0 = 0 \quad \forall n \in \mathbb{N}\)</li>
+  <li>\(n \times S(m) = n \times m + n\)</li>
+</ul>
+<p>The multiplication extends to \(\mathbb{Z}\) and can be checked easily.</p>
+
+<h4 class="text-lg font-semibold text-primary mt-8">Construction of Rational Numbers</h4>
+<p>Let \(X = \mathbb{Z} \times (\mathbb{Z} \setminus \{0\})\).</p>
+<p>Define a relation on \(X\) by \((a,b) \sim (a',b')\) iff \(ab' = ba'\).</p>
+<p>This is also an equivalence relation on \(X\).</p>
+<p>\(Q =\) set of equivalence classes \(= \{[(a,b)] \mid a \in \mathbb{Z}, b \in \mathbb{Z} \setminus \{0\}\}\)</p>
+
+<p>Define \(+\) on \(Q\) by:</p>
+<p>\([(a,b)] + [(c,d)] = [(ad + bc, bd)]\)</p>
+
+<p><strong>Exercise:</strong> Check that if \([(a,b)] = [(a',b')]\) and \([(c,d)] = [(c',d')]\), then</p>
+<p>\([(ad + bc, bd)] = [(a'd' + b'c', b'd')]\)</p>
         </section>
       </section>
     </main>
