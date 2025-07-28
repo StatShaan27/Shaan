@@ -94,6 +94,146 @@
         <!-- Just paste <section> blocks here for each note -->
         <h2 class="text-xl font-semibold mb-4 text-primary">Welcome to Analysis III</h2>
         <p class="text-gray-300">Use the collapsible sidebar on the left to jump between topics.</p>
+      <section>
+  <h4>1. Setup and Regularity Conditions</h4>
+  <p>Consider a random sample \(X_1, X_2, \dots, X_n\) drawn independently and identically distributed (i.i.d.) from a distribution with probability density function (or probability mass function, in the discrete case) \(f(x\mid\theta)\). Let \(\mathbf{X} = (X_1, X_2, \dots, X_n)\) denote the vector of observations. We are interested in a statistic \(W(\mathbf{X})\), which could be scalar-valued or vector-valued, used to estimate a parameter \(\theta\) (or a function of \(\theta\)).</p>
+  <p>Assume:</p>
+  <ul>
+    <li>\(<em>Finite Variance</em>: \(\mathrm{Var}_\theta\bigl(W(\mathbf{X})\bigr) < \infty\). This ensures the variance bound we derive is meaningful.</li>
+    <li><em>Regularity Condition</em>: We can interchange differentiation with integration (or summation, in the discrete case). Concretely, for scalar \(\theta\):
+      <p>\[
+        \frac{d}{d\theta}\mathbb{E}_\theta\bigl[W(\mathbf{X})\bigr]
+        = \frac{d}{d\theta} \int W(\mathbf{x})\,f(\mathbf{x}\mid\theta)\,d\mathbf{x}
+        = \int \frac{\partial}{\partial\theta}\bigl(W(\mathbf{x})f(\mathbf{x}\mid\theta)\bigr)\,d\mathbf{x}.
+      \]</p>
+      <p>In the discrete case: replace the integral by a sum over all possible \(\mathbf{x}\in\mathcal{X}^n\).</p>
+    </li>
+  </ul>
+
+  <h4>2. Cramér–Rao Variance Inequality</h4>
+  <p>Under these assumptions, any statistic \(W(\mathbf{X})\) (not necessarily unbiased) satisfies the generalized Cramér–Rao-type inequality:</p>
+  <p>\[
+    \mathrm{Var}_\theta\bigl(W(\mathbf{X})\bigr)
+    \ge\n    \frac{\Bigl(\frac{d}{d\theta}\mathbb{E}_\theta[W(\mathbf{X})]\Bigr)^{2}}
+         {\mathbb{E}_\theta\Bigl[\bigl(\tfrac{d}{d\theta}\log f(\mathbf{X}\mid\theta)\bigr)^{2}\Bigr]}.
+  \]</p>
+  <p>Here,</p>
+  <ul>
+    <li>\(\tfrac{d}{d\theta}\mathbb{E}_\theta[W(\mathbf{X})]\) is the sensitivity of the expectation of \(W\) with respect to \(\theta\).</li>
+    <li>The denominator \( \mathbb{E}_\theta[(\tfrac{d}{d\theta}\log f)^2] \) is the <strong>Fisher Information</strong> (scalar), denoted \(\mathcal{I}(\theta)\). It quantifies the amount of information the observable data carries about the parameter.</li>
+  </ul>
+
+  <h4>3. Simplification (1): Unbiased Estimator Case</h4>
+  <p>If \(W(\mathbf{X})\) is an <em>unbiased</em> estimator of \(\theta\), meaning:</p>
+  <p>\[
+    \mathbb{E}_\theta\bigl[W(\mathbf{X})\bigr] = \theta, \quad \forall\,\theta,
+  \]</p>
+  <p>then</p>
+  <p>\[
+    \frac{d}{d\theta}\mathbb{E}_\theta[W(\mathbf{X})] = \frac{d}{d\theta}(\theta) = 1.
+  \]</p>
+  <p>Substituting into the general inequality yields the classic <strong>Cramér–Rao Lower Bound (CRLB)</strong>:</p>
+  <p>\[
+    \mathrm{Var}_\theta\bigl(W(\mathbf{X})\bigr)
+    \ge \frac{1}{\mathcal{I}(\theta)}
+    = \frac{1}{\mathbb{E}_\theta\bigl[(\tfrac{d}{d\theta}\log f(\mathbf{X}\mid\theta))^{2}\bigr]}.
+  \]</p>
+  <p>This bound applies to any unbiased estimator—even if \(W\) is vector-valued, a similar bound holds component-wise or matrix-wise.</p>
+
+  <h4>4. Worked Example: IID Normal with Known Variance</h4>
+  <p>Consider \(X_1,\dots,X_n\sim\mathcal{N}(\mu,1)\). Then the joint density:</p>
+  <p>\[
+    f(\mathbf{x}\mid\mu)
+    = \prod_{i=1}^n \frac{1}{\sqrt{2\pi}} e^{-\tfrac12(x_i-\mu)^2},
+    \\
+    \log f(\mathbf{x}\mid\mu) = -\frac{n}{2}\log(2\pi) - \frac{1}{2}\sum_{i=1}^n (x_i-\mu)^2.
+  \]</p>
+  <p>Differentiating the log-likelihood:</p>
+  <p>\[
+    \frac{d}{d\mu}\log f(\mathbf{x}\mid\mu)
+    = \sum_{i=1}^n (x_i-\mu)
+    = n(\bar{x}-\mu),
+  \]</p>
+  <p>where \(\bar{x}=\tfrac1n\sum x_i\) is the sample mean. The Fisher Information is:</p>
+  <p>\[
+    \mathcal{I}(\mu)
+    = \mathbb{E}_\mu\Bigl[\bigl(n(\bar{X}-\mu)\bigr)^2\Bigr]
+    = n^2 \mathrm{Var}(\bar{X})
+    = n^2 \times \frac{1}{n}
+    = n.
+  \]</p>
+  <p>Thus the CRLB for any unbiased estimator of \(\mu\) is \(1/n\). The sample mean itself has:</p>
+  <p>\[
+    \mathbb{E}[\bar{X}]=\mu, \quad \mathrm{Var}(\bar{X})=\tfrac{1}{n},
+  \]</p>
+  <p>so it <strong>achieves</strong> the bound and is <em>efficient</em>.</p>
+
+  <h4>5. Discrete Analogue: PMF Case</h4>
+  <p>When \(X_i\) take values in a countable set with pmf \(p(x\mid\theta)\), replace integrals by sums. The general CRLB form remains:</p>
+  <p>\[
+    \mathrm{Var}_\theta(W)
+    \ge \frac{(\tfrac{d}{d\theta}\mathbb{E}_\theta[W])^2}
+             {\mathbb{E}_\theta\bigl[(\tfrac{d}{d\theta}\log p(\mathbf{X}\mid\theta))^2\bigr]}.
+  \]</p>
+  <p><strong>Bernoulli Example:</strong> \(X_i\sim\mathrm{Bernoulli}(p)\). The log-likelihood is</p>
+  <p>\[
+    \log p(\mathbf{x}\mid p)
+    = \sum_{i=1}^n \bigl[x_i\log p + (1-x_i)\log(1-p)\bigr],
+  \]</p>
+  <p>Score function:</p>
+  <p>\[
+    \frac{d}{dp}\log p(\mathbf{X}\mid p)
+    = \sum_{i=1}^n \Bigl(\tfrac{X_i}{p} - \tfrac{1-X_i}{1-p}\Bigr).
+  \]</p>
+  <p>Fisher Information:</p>
+  <p>\[
+    \mathcal{I}(p)
+    = \mathbb{E}\Bigl[\bigl(\sum (\tfrac{X_i}{p}-\tfrac{1-X_i}{1-p})\bigr)^2\Bigr]
+    = \frac{n}{p(1-p)}.
+  \]</p>
+  <p>An unbiased estimator for \(p\) is \(\bar{X}\) with variance \(p(1-p)/n\), which equals the bound.</p>
+
+  <h4>6. Fisher Information Identity</h4>
+  <p>Under regularity:</p>
+  <p>\[
+    \mathbb{E}_\theta\bigl[\partial_\theta\log f(\mathbf{X}\mid\theta)\bigr]=0
+    \implies
+    0=\frac{d}{d\theta}\mathbb{E}[\partial_\theta\log f]
+    = \mathbb{E}\bigl[\partial^2_\theta\log f + (\partial_\theta\log f)^2\bigr].
+  \]</p>
+  <p>Rearranged:</p>
+  <p>\[
+    \mathcal{I}(\theta)
+    = \mathbb{E}\bigl[(\partial_\theta\log f)^2\bigr]
+    = -\mathbb{E}\bigl[\partial^2_\theta\log f\bigr].
+  \]</p>
+  <p>This shows the Fisher Information can be computed via the variance of the score or the negative expected second derivative of the log-likelihood.</p>
+
+  <h4>7. Vector Parameter CRLB</h4>
+  <p>Let \(\boldsymbol{\theta}\in\mathbb{R}^k\) and a vector estimator \(\mathbf{W}(\mathbf{X})\in\mathbb{R}^m\). If \(\mathbb{E}[\mathbf{W}]=\boldsymbol{\psi}(\boldsymbol{\theta})\) is differentiable, then:</p>
+  <p>\[
+    \mathrm{Cov}_{\boldsymbol{\theta}}(\mathbf{W})
+    \succeq
+    \left(\frac{\partial\boldsymbol{\psi}}{\partial\boldsymbol{\theta}}\right)^T
+    \mathcal{I}(\boldsymbol{\theta})^{-1}
+    \left(\frac{\partial\boldsymbol{\psi}}{\partial\boldsymbol{\theta}}\right),
+  \]</p>
+  <p>where the <strong>Fisher Information Matrix</strong> is:</p>
+  <p>\[
+    \mathcal{I}(\boldsymbol{\theta})
+    = \mathbb{E}\Bigl[\bigl(\nabla_{\boldsymbol{\theta}}\log f\bigr)
+      \bigl(\nabla_{\boldsymbol{\theta}}\log f\bigr)^T\Bigr]
+    = -\mathbb{E}[\nabla^2_{\boldsymbol{\theta}}\log f].
+  \]</p>
+  <p>In the special case of an unbiased vector estimator (\(\boldsymbol{\psi}(\boldsymbol{\theta})=\boldsymbol{\theta}\)), the Jacobian is the identity and:</p>
+  <p>\[
+    \mathrm{Cov}(\mathbf{W})\succeq \mathcal{I}(\boldsymbol{\theta})^{-1}.
+  \]</p>
+</section>
+
+
+
+
       </section>
     </main>
 
