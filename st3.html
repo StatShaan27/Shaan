@@ -95,140 +95,504 @@
         <h2 class="text-xl font-semibold mb-4 text-primary">Welcome to Analysis III</h2>
         <p class="text-gray-300">Use the collapsible sidebar on the left to jump between topics.</p>
       <section>
-  <h4>1. Setup and Regularity Conditions</h4>
-  <p>Consider a random sample \(X_1, X_2, \dots, X_n\) drawn independently and identically distributed (i.i.d.) from a distribution with probability density function (or probability mass function, in the discrete case) \(f(x\mid\theta)\). Let \(\mathbf{X} = (X_1, X_2, \dots, X_n)\) denote the vector of observations. We are interested in a statistic \(W(\mathbf{X})\), which could be scalar-valued or vector-valued, used to estimate a parameter \(\theta\) (or a function of \(\theta\)).</p>
-  <p>Assume:</p>
+
+  <h4>🧠 Variance Inequality and the Cramér–Rao Bound</h4>
+
+  <p>You’re discussing a <strong>variance inequality</strong> in the context of estimation theory, specifically a <strong>Cramér–Rao-type bound</strong>.</p>
+
+  <h4>1. Setup:</h4>
+
+  <p>Let \( X_1, X_2, \dots, X_n \) be i.i.d. with density \( f(x|\theta) \), and let \( W(\mathbf{X}) \) be a statistic where \( \mathbf{X} = (X_1, \dots, X_n) \).</p>
+
+  <p>The goal is to study the variance of this statistic and establish a lower bound. The assumptions are:</p>
+
   <ul>
-    <li>\(<em>Finite Variance</em>: \(\mathrm{Var}_\theta\bigl(W(\mathbf{X})\bigr) < \infty\). This ensures the variance bound we derive is meaningful.</li>
-    <li><em>Regularity Condition</em>: We can interchange differentiation with integration (or summation, in the discrete case). Concretely, for scalar \(\theta\):
-      <p>\[
-        \frac{d}{d\theta}\mathbb{E}_\theta\bigl[W(\mathbf{X})\bigr]
-        = \frac{d}{d\theta} \int W(\mathbf{x})\,f(\mathbf{x}\mid\theta)\,d\mathbf{x}
-        = \int \frac{\partial}{\partial\theta}\bigl(W(\mathbf{x})f(\mathbf{x}\mid\theta)\bigr)\,d\mathbf{x}.
-      \]</p>
-      <p>In the discrete case: replace the integral by a sum over all possible \(\mathbf{x}\in\mathcal{X}^n\).</p>
+    <li>\( \operatorname{Var}_\theta(W(\mathbf{X})) < \infty \)</li>
+    <li>\( \frac{d}{d\theta} \mathbb{E}_\theta[W(\mathbf{X})] = \int \frac{d}{d\theta}\left(W(\mathbf{X}) f(\mathbf{X}|\theta)\right) d\mathbf{x} \)</li>
+  </ul>
+
+  <p>This second condition is a <em>technical regularity condition</em> that allows the interchange of differentiation and integration — a standard step in proving the Cramér–Rao inequality.</p>
+
+  <h4>2. The Inequality Itself:</h4>
+
+  <p>The general form of the Cramér–Rao bound is:</p>
+
+  \[
+  \operatorname{Var}_\theta(W(\mathbf{X})) \geq \frac{\left( \frac{d}{d\theta} \mathbb{E}_\theta[W(\mathbf{X})] \right)^2}{\mathbb{E}_\theta\left[ \left( \frac{d}{d\theta} \log f(\mathbf{X}|\theta) \right)^2 \right]}
+  \]
+
+  <p>This inequality states that the variance of any (possibly biased) statistic is lower-bounded by a ratio involving its sensitivity to the parameter and the Fisher Information.</p>
+
+  <p>The denominator is the <strong>Fisher Information</strong>, representing how much information the data \( \mathbf{X} \) provides about the parameter \( \theta \).</p>
+
+  <h4>3. Simplification (1): Unbiased Estimator</h4>
+
+  <p>If the statistic is <strong>unbiased</strong>, i.e.,</p>
+
+  \[
+  \mathbb{E}_\theta[W(\mathbf{X})] = \theta \quad \text{for all } \theta,
+  \]
+
+  <p>then:</p>
+
+  \[
+  \frac{d}{d\theta} \mathbb{E}_\theta[W(\mathbf{X})] = 1
+  \]
+
+  <p>Substituting this into the inequality, the bound simplifies to:</p>
+
+  \[
+  \operatorname{Var}_\theta(W(\mathbf{X})) \geq \frac{1}{\mathbb{E}_\theta\left[ \left( \frac{d}{d\theta} \log f(\mathbf{X}|\theta) \right)^2 \right]}
+  \]
+
+  <p>This is the <strong>standard Cramér–Rao Lower Bound (CRLB)</strong> for unbiased estimators.</p>
+
+  <h4>4. Example:</h4>
+
+  <p>If \( \mathbb{E}(X_i) = \theta \) for all \( i \), and \( W(\mathbf{X}) \) is the sample mean, then clearly:</p>
+
+  \[
+  \mathbb{E}(W(\mathbf{X})) = \theta
+  \]
+
+  <p>✅ Thus, the sample mean is an unbiased estimator of \( \theta \) and qualifies under Simplification (1).</p>
+
+  <h4>✅ Summary So Far:</h4>
+
+  <ul>
+    <li>You’ve established a general variance lower bound involving Fisher Information.</li>
+    <li>You’ve stated the regularity condition needed for interchanging differentiation and integration.</li>
+    <li>You’ve shown how the inequality simplifies when the estimator is unbiased.</li>
+    <li>You’ve provided a concrete example where this applies — the sample mean.</li>
+  </ul>
+
+</section>
+<section>
+
+  <h4>🔍 Simplification (2): Cramér–Rao Bound for IID Case</h4>
+
+  <h4>1. Factorization of Likelihood for IID Samples</h4>
+
+  <p>If \( X_1, \dots, X_n \) are <strong>i.i.d.</strong>, then the joint density factorizes as:</p>
+
+  \[
+  f(\mathbf{x}|\theta) = \prod_{i=1}^{n} f(x_i|\theta)
+  \quad \Rightarrow \quad
+  \log f(\mathbf{x}|\theta) = \sum_{i=1}^{n} \log f(x_i|\theta)
+  \]
+
+  <p>This simplification makes it easier to compute the <em>score function</em>, which is the derivative of the log-likelihood with respect to the parameter.</p>
+
+  <h4>2. Example: \( X_i \sim \mathcal{N}(\mu, 1) \)</h4>
+
+  <p>Given that:</p>
+
+  \[
+  f(x_i|\mu) = \frac{1}{\sqrt{2\pi}} \exp\left(-\frac{(x_i - \mu)^2}{2}\right)
+  \]
+
+  <p>Taking the logarithm of the density:</p>
+
+  \[
+  \log f(x_i|\mu) = -\frac{1}{2} \log(2\pi) - \frac{1}{2}(x_i - \mu)^2
+  \]
+
+  <p>Differentiating with respect to \( \mu \):</p>
+
+  \[
+  \frac{d}{d\mu} \log f(x_i|\mu) = x_i - \mu
+  \]
+
+  <p>So the <strong>score function</strong> for the full sample becomes:</p>
+
+  \[
+  \frac{d}{d\mu} \log f(\mathbf{x}|\mu) = \sum_{i=1}^n (x_i - \mu)
+  \]
+
+  <h4>3. Fisher Information</h4>
+
+  <p>To compute the Fisher Information \( \mathcal{I}(\mu) \), consider:</p>
+
+  \[
+  \mathbb{E}_\mu \left[ \left( \sum_{i=1}^n (X_i - \mu) \right)^2 \right]
+  = \sum_{i=1}^n \mathbb{E}_\mu[(X_i - \mu)^2]
+  \]
+
+  <p>The cross terms vanish because the variables are independent and each \( \mathbb{E}_\mu[X_i - \mu] = 0 \). Each term contributes 1, since:</p>
+
+  \[
+  \mathbb{E}_\mu[(X_i - \mu)^2] = \operatorname{Var}(X_i) = 1
+  \]
+
+  <p>So the total Fisher Information is:</p>
+
+  \[
+  \mathcal{I}(\mu) = n
+  \]
+
+  <h4>✅ Conclusion:</h4>
+
+  <p>You’ve derived the CRLB for the i.i.d. normal case \( \mathcal{N}(\mu, 1) \). Key results:</p>
+
+  <ul>
+    <li><strong>Estimator:</strong> Sample mean \( \bar{X} \)</li>
+    <li><strong>Unbiased:</strong> Yes</li>
+    <li><strong>Variance of \( \bar{X} \):</strong> \( \frac{1}{n} \)</li>
+    <li><strong>Fisher Information:</strong> \( n \)</li>
+    <li><strong>CRLB:</strong> \( \frac{1}{n} \), which is achieved</li>
+  </ul>
+
+  <p>✅ Hence, the sample mean is an <strong>efficient estimator</strong> of \( \mu \) in this setting.</p>
+
+</section>
+<section>
+
+  <h4>✅ Putting It All Together</h4>
+
+  <p>You’ve now made two key simplifications to understand how the Cramér–Rao bound plays out in practice:</p>
+
+  <h4>Simplification (1):</h4>
+
+  <p>If \( \mathbb{E}_\mu[W(\mathbf{X})] = \mu \), then:</p>
+
+  <ul>
+    <li>\( W(\mathbf{X}) \) is an <strong>unbiased</strong> estimator of \( \mu \)</li>
+    <li>The numerator in CRLB becomes 1</li>
+  </ul>
+
+  \[
+  \operatorname{Var}_\mu(W(\mathbf{X})) \geq \frac{1}{\mathbb{E}_\mu\left[ \left( \frac{d}{d\mu} \log f(\mathbf{X}|\mu) \right)^2 \right]} = \frac{1}{\text{Fisher Information}}
+  \]
+
+  <h4>Simplification (2):</h4>
+
+  <ul>
+    <li>For the i.i.d. normal case, Fisher Information = \( n \)</li>
+    <li>So, CRLB = \( \frac{1}{n} \)</li>
+  </ul>
+
+  <h4>❓ Immediate Question: Does the sample mean attain this lower bound?</h4>
+
+  <p>The sample mean is defined as:</p>
+
+  \[
+  \bar{X} = \frac{1}{n} \sum_{i=1}^n X_i
+  \]
+
+  <p>Given \( X_i \sim \mathcal{N}(\mu, 1) \), we have:</p>
+
+  \[
+  \mathbb{E}[\bar{X}] = \mu, \quad \operatorname{Var}(\bar{X}) = \frac{1}{n}
+  \]
+
+  <p>✅ Therefore:</p>
+
+  <ul>
+    <li>The sample mean is <strong>unbiased</strong>: satisfies Simplification (1)</li>
+    <li>Its variance \( \frac{1}{n} \) matches the CRLB from Simplification (2)</li>
+  </ul>
+
+  <h4>✅ Final Answer:</h4>
+
+  <p><strong>Yes</strong>, the sample mean <strong>attains the Cramér–Rao lower bound</strong> for the normal model with known variance. It is an <strong>efficient estimator</strong> of \( \mu \).</p>
+
+  <hr>
+
+  <h4>🔁 Cramér–Rao Inequality in the Discrete Case</h4>
+
+  <p>Let’s transition to the discrete version of the CRLB, where the underlying distribution is a <strong>PMF</strong> instead of a PDF.</p>
+
+  <h4>Continuous Case Recap:</h4>
+
+  <ul>
+    <li>We assume a differentiable <strong>pdf</strong> \( f(x|\theta) \)</li>
+    <li>We require regularity conditions to differentiate under the integral</li>
+    <li>Fisher Information is defined using \( \frac{d}{d\theta} \log f(x|\theta) \)</li>
+  </ul>
+
+  <h4>📦 Discrete Case Setup:</h4>
+
+  <p>We now work with a <strong>pmf</strong> \( p(x|\theta) \), where \( x \in \mathcal{X} \), a countable set.</p>
+
+  <h4>🧠 Key Result:</h4>
+
+  <p>Suppose:</p>
+
+  <ul>
+    <li>\( X_1, \dots, X_n \) are i.i.d. with pmf \( p(x|\theta) \)</li>
+    <li>\( W(\mathbf{X}) \) is a statistic such that:
+      <ul>
+        <li>\( \mathbb{E}_\theta[W(\mathbf{X})] \) is differentiable</li>
+        <li>Derivative of expectation can be interchanged with the sum:
+        \[
+        \frac{d}{d\theta} \mathbb{E}_\theta[W(\mathbf{X})] = \sum_{\mathbf{x}} W(\mathbf{x}) \frac{d}{d\theta} p(\mathbf{x}|\theta)
+        \]
+        </li>
+      </ul>
     </li>
   </ul>
 
-  <h4>2. Cramér–Rao Variance Inequality</h4>
-  <p>Under these assumptions, any statistic \(W(\mathbf{X})\) (not necessarily unbiased) satisfies the generalized Cramér–Rao-type inequality:</p>
-  <p>\[
-    \mathrm{Var}_\theta\bigl(W(\mathbf{X})\bigr)
-    \ge\n    \frac{\Bigl(\frac{d}{d\theta}\mathbb{E}_\theta[W(\mathbf{X})]\Bigr)^{2}}
-         {\mathbb{E}_\theta\Bigl[\bigl(\tfrac{d}{d\theta}\log f(\mathbf{X}\mid\theta)\bigr)^{2}\Bigr]}.
-  \]</p>
-  <p>Here,</p>
+  <p>Then the <strong>Cramér–Rao inequality</strong> in this setting becomes:</p>
+
+  \[
+  \operatorname{Var}_\theta(W(\mathbf{X})) \geq \frac{\left( \frac{d}{d\theta} \mathbb{E}_\theta[W(\mathbf{X})] \right)^2}{\mathbb{E}_\theta\left[ \left( \frac{d}{d\theta} \log p(\mathbf{X}|\theta) \right)^2 \right]}
+  \]
+
+  <p>This is structurally identical to the continuous version, with integrals replaced by sums.</p>
+
+  <h4>✅ Example: Bernoulli Case</h4>
+
+  <p>Suppose:</p>
+
   <ul>
-    <li>\(\tfrac{d}{d\theta}\mathbb{E}_\theta[W(\mathbf{X})]\) is the sensitivity of the expectation of \(W\) with respect to \(\theta\).</li>
-    <li>The denominator \( \mathbb{E}_\theta[(\tfrac{d}{d\theta}\log f)^2] \) is the <strong>Fisher Information</strong> (scalar), denoted \(\mathcal{I}(\theta)\). It quantifies the amount of information the observable data carries about the parameter.</li>
+    <li>\( X_1, \dots, X_n \sim \text{Bernoulli}(p) \)</li>
+    <li>\( p \in (0, 1) \), and we wish to estimate \( p \)</li>
   </ul>
 
-  <h4>3. Simplification (1): Unbiased Estimator Case</h4>
-  <p>If \(W(\mathbf{X})\) is an <em>unbiased</em> estimator of \(\theta\), meaning:</p>
-  <p>\[
-    \mathbb{E}_\theta\bigl[W(\mathbf{X})\bigr] = \theta, \quad \forall\,\theta,
-  \]</p>
-  <p>then</p>
-  <p>\[
-    \frac{d}{d\theta}\mathbb{E}_\theta[W(\mathbf{X})] = \frac{d}{d\theta}(\theta) = 1.
-  \]</p>
-  <p>Substituting into the general inequality yields the classic <strong>Cramér–Rao Lower Bound (CRLB)</strong>:</p>
-  <p>\[
-    \mathrm{Var}_\theta\bigl(W(\mathbf{X})\bigr)
-    \ge \frac{1}{\mathcal{I}(\theta)}
-    = \frac{1}{\mathbb{E}_\theta\bigl[(\tfrac{d}{d\theta}\log f(\mathbf{X}\mid\theta))^{2}\bigr]}.
-  \]</p>
-  <p>This bound applies to any unbiased estimator—even if \(W\) is vector-valued, a similar bound holds component-wise or matrix-wise.</p>
+  <p>The PMF is:</p>
 
-  <h4>4. Worked Example: IID Normal with Known Variance</h4>
-  <p>Consider \(X_1,\dots,X_n\sim\mathcal{N}(\mu,1)\). Then the joint density:</p>
-  <p>\[
-    f(\mathbf{x}\mid\mu)
-    = \prod_{i=1}^n \frac{1}{\sqrt{2\pi}} e^{-\tfrac12(x_i-\mu)^2},
-    \\
-    \log f(\mathbf{x}\mid\mu) = -\frac{n}{2}\log(2\pi) - \frac{1}{2}\sum_{i=1}^n (x_i-\mu)^2.
-  \]</p>
-  <p>Differentiating the log-likelihood:</p>
-  <p>\[
-    \frac{d}{d\mu}\log f(\mathbf{x}\mid\mu)
-    = \sum_{i=1}^n (x_i-\mu)
-    = n(\bar{x}-\mu),
-  \]</p>
-  <p>where \(\bar{x}=\tfrac1n\sum x_i\) is the sample mean. The Fisher Information is:</p>
-  <p>\[
-    \mathcal{I}(\mu)
-    = \mathbb{E}_\mu\Bigl[\bigl(n(\bar{X}-\mu)\bigr)^2\Bigr]
-    = n^2 \mathrm{Var}(\bar{X})
-    = n^2 \times \frac{1}{n}
-    = n.
-  \]</p>
-  <p>Thus the CRLB for any unbiased estimator of \(\mu\) is \(1/n\). The sample mean itself has:</p>
-  <p>\[
-    \mathbb{E}[\bar{X}]=\mu, \quad \mathrm{Var}(\bar{X})=\tfrac{1}{n},
-  \]</p>
-  <p>so it <strong>achieves</strong> the bound and is <em>efficient</em>.</p>
+  \[
+  p(x_i | p) = p^{x_i}(1-p)^{1 - x_i}
+  \]
 
-  <h4>5. Discrete Analogue: PMF Case</h4>
-  <p>When \(X_i\) take values in a countable set with pmf \(p(x\mid\theta)\), replace integrals by sums. The general CRLB form remains:</p>
-  <p>\[
-    \mathrm{Var}_\theta(W)
-    \ge \frac{(\tfrac{d}{d\theta}\mathbb{E}_\theta[W])^2}
-             {\mathbb{E}_\theta\bigl[(\tfrac{d}{d\theta}\log p(\mathbf{X}\mid\theta))^2\bigr]}.
-  \]</p>
-  <p><strong>Bernoulli Example:</strong> \(X_i\sim\mathrm{Bernoulli}(p)\). The log-likelihood is</p>
-  <p>\[
-    \log p(\mathbf{x}\mid p)
-    = \sum_{i=1}^n \bigl[x_i\log p + (1-x_i)\log(1-p)\bigr],
-  \]</p>
+  <p>Log-likelihood of the sample:</p>
+
+  \[
+  \log p(\mathbf{X}|p) = \sum_{i=1}^n \left[ x_i \log p + (1 - x_i) \log(1 - p) \right]
+  \]
+
   <p>Score function:</p>
-  <p>\[
-    \frac{d}{dp}\log p(\mathbf{X}\mid p)
-    = \sum_{i=1}^n \Bigl(\tfrac{X_i}{p} - \tfrac{1-X_i}{1-p}\Bigr).
-  \]</p>
-  <p>Fisher Information:</p>
-  <p>\[
-    \mathcal{I}(p)
-    = \mathbb{E}\Bigl[\bigl(\sum (\tfrac{X_i}{p}-\tfrac{1-X_i}{1-p})\bigr)^2\Bigr]
-    = \frac{n}{p(1-p)}.
-  \]</p>
-  <p>An unbiased estimator for \(p\) is \(\bar{X}\) with variance \(p(1-p)/n\), which equals the bound.</p>
 
-  <h4>6. Fisher Information Identity</h4>
-  <p>Under regularity:</p>
-  <p>\[
-    \mathbb{E}_\theta\bigl[\partial_\theta\log f(\mathbf{X}\mid\theta)\bigr]=0
-    \implies
-    0=\frac{d}{d\theta}\mathbb{E}[\partial_\theta\log f]
-    = \mathbb{E}\bigl[\partial^2_\theta\log f + (\partial_\theta\log f)^2\bigr].
-  \]</p>
-  <p>Rearranged:</p>
-  <p>\[
-    \mathcal{I}(\theta)
-    = \mathbb{E}\bigl[(\partial_\theta\log f)^2\bigr]
-    = -\mathbb{E}\bigl[\partial^2_\theta\log f\bigr].
-  \]</p>
-  <p>This shows the Fisher Information can be computed via the variance of the score or the negative expected second derivative of the log-likelihood.</p>
+  \[
+  \frac{d}{dp} \log p(\mathbf{X}|p) = \sum_{i=1}^n \left( \frac{x_i}{p} - \frac{1 - x_i}{1 - p} \right)
+  \]
 
-  <h4>7. Vector Parameter CRLB</h4>
-  <p>Let \(\boldsymbol{\theta}\in\mathbb{R}^k\) and a vector estimator \(\mathbf{W}(\mathbf{X})\in\mathbb{R}^m\). If \(\mathbb{E}[\mathbf{W}]=\boldsymbol{\psi}(\boldsymbol{\theta})\) is differentiable, then:</p>
-  <p>\[
-    \mathrm{Cov}_{\boldsymbol{\theta}}(\mathbf{W})
-    \succeq
-    \left(\frac{\partial\boldsymbol{\psi}}{\partial\boldsymbol{\theta}}\right)^T
-    \mathcal{I}(\boldsymbol{\theta})^{-1}
-    \left(\frac{\partial\boldsymbol{\psi}}{\partial\boldsymbol{\theta}}\right),
-  \]</p>
-  <p>where the <strong>Fisher Information Matrix</strong> is:</p>
-  <p>\[
-    \mathcal{I}(\boldsymbol{\theta})
-    = \mathbb{E}\Bigl[\bigl(\nabla_{\boldsymbol{\theta}}\log f\bigr)
-      \bigl(\nabla_{\boldsymbol{\theta}}\log f\bigr)^T\Bigr]
-    = -\mathbb{E}[\nabla^2_{\boldsymbol{\theta}}\log f].
-  \]</p>
-  <p>In the special case of an unbiased vector estimator (\(\boldsymbol{\psi}(\boldsymbol{\theta})=\boldsymbol{\theta}\)), the Jacobian is the identity and:</p>
-  <p>\[
-    \mathrm{Cov}(\mathbf{W})\succeq \mathcal{I}(\boldsymbol{\theta})^{-1}.
-  \]</p>
+  <p>Fisher Information becomes:</p>
+
+  \[
+  \mathcal{I}(p) = \mathbb{E}_p\left[ \left( \sum_{i=1}^n \left( \frac{X_i}{p} - \frac{1 - X_i}{1 - p} \right) \right)^2 \right] = \frac{n}{p(1 - p)}
+  \]
+
+  <p>The sample mean:</p>
+
+  \[
+  \bar{X} = \frac{1}{n} \sum_{i=1}^n X_i
+  \]
+
+  <p>is unbiased, with variance:</p>
+
+  \[
+  \operatorname{Var}(\bar{X}) = \frac{p(1 - p)}{n}
+  \]
+
+  <p>So the CRLB is:</p>
+
+  \[
+  \operatorname{Var}(\hat{p}) \geq \frac{1}{\mathcal{I}(p)} = \frac{p(1 - p)}{n}
+  \]
+
+  <p>✅ This bound is achieved by the sample mean, so it is <strong>efficient</strong>.</p>
+
+  <h4>Summary:</h4>
+
+  <ul>
+    <li>The CRLB extends naturally to <strong>discrete distributions</strong>.</li>
+    <li>Integrals become sums.</li>
+    <li>Work with \( \log p(x|\theta) \) instead of \( \log f(x|\theta) \).</li>
+    <li>In the Bernoulli case, the sample mean is an efficient estimator of \( p \).</li>
+  </ul>
+
+</section>
+<section>
+
+  <h4>📘 Statement of the Result:</h4>
+
+  <p>If the regularity condition holds:</p>
+
+  \[
+  \frac{d}{d\theta}\mathbb{E}_{\theta}\left(\frac{\partial}{\partial\theta}\log f(X|\theta)\right) = \int \left[\frac{\partial}{\partial\theta}\left[\left(\frac{\partial}{\partial\theta}\log f(x|\theta)\right) f(x|\theta)\right]\right] dx,
+  \]
+
+  <p>then we can derive the identity:</p>
+
+  \[
+  \mathbb{E}_\theta\left[\left(\frac{\partial}{\partial\theta} \log f(X|\theta)\right)^2\right] = -\mathbb{E}_\theta\left[\frac{\partial^2}{\partial\theta^2} \log f(X|\theta)\right]
+  \]
+
+  <p>This is known as the <strong>Fisher Information identity</strong>. Both sides equal the <strong>Fisher Information</strong> \( \mathcal{I}(\theta) \).</p>
+
+  <hr>
+
+  <h4>📌 Why This Is True: Key Insight</h4>
+
+  <p>Let \( \ell(\theta; X) = \log f(X|\theta) \), the log-likelihood.</p>
+
+  <ul>
+    <li>The <strong>score</strong> is \( \frac{\partial}{\partial\theta} \ell(\theta; X) \)</li>
+    <li>Its <strong>expectation</strong> is 0:
+      \[
+      \mathbb{E}_\theta\left[\frac{\partial}{\partial\theta} \ell(\theta; X)\right] = 0
+      \]
+    </li>
+  </ul>
+
+  <p>Differentiating under the integral sign:</p>
+
+  \[
+  \frac{d}{d\theta} \mathbb{E}_\theta\left[\frac{\partial}{\partial\theta} \ell(\theta; X)\right] = 0 = \mathbb{E}_\theta\left[ \frac{\partial^2}{\partial\theta^2} \ell(\theta; X) + \left( \frac{\partial}{\partial\theta} \ell(\theta; X) \right)^2 \right]
+  \]
+
+  <p>Rearranging gives:</p>
+
+  \[
+  \mathbb{E}_\theta\left[\left(\frac{\partial}{\partial\theta} \log f(X|\theta)\right)^2\right] = -\mathbb{E}_\theta\left[\frac{\partial^2}{\partial\theta^2} \log f(X|\theta)\right]
+  \]
+
+  <hr>
+
+  <h4>🔁 Interpretation:</h4>
+
+  <ul>
+    <li><strong>LHS</strong> = variance of the score (square of derivative of log-likelihood)</li>
+    <li><strong>RHS</strong> = negative expectation of the second derivative (curvature of log-likelihood)</li>
+  </ul>
+
+  <p>Both sides quantify <strong>how much information</strong> the data carries about \( \theta \).</p>
+
+  <hr>
+
+  <h4>✅ Summary:</h4>
+
+  <p>You are stating the <strong>Fisher Information identity</strong>, which tells us:</p>
+
+  <blockquote>
+    Under regularity conditions, the variance of the score function equals the negative expected second derivative of the log-likelihood.
+  </blockquote>
+
+  \[
+  \mathcal{I}(\theta) = \operatorname{Var}_\theta\left( \frac{d}{d\theta} \log f(X|\theta) \right) = -\mathbb{E}_\theta\left[ \frac{d^2}{d\theta^2} \log f(X|\theta) \right]
+  \]
+
+  <p>This identity is <strong>fundamental</strong> in proving the Cramér–Rao Lower Bound and in the <strong>asymptotic theory</strong> of maximum likelihood estimators.</p>
+
+</section>
+<section>
+  <h4>Fisher Information Identity</h4>
+  <p>
+    If the regularity condition holds:
+  </p>
+  <p>
+    $$\frac{d}{d\theta}\mathbb{E}_{\theta}\left(\frac{\partial}{\partial\theta}\log f(X|\theta)\right) = \int \left[\frac{\partial}{\partial\theta}\left[\left(\frac{\partial}{\partial\theta}\log f(x|\theta)\right) f(x|\theta)\right]\right] dx,$$
+  </p>
+  <p>
+    then we can derive:
+  </p>
+  <p>
+    $$\mathbb{E}_\theta\left[\left(\frac{\partial}{\partial\theta} \log f(X|\theta)\right)^2\right] = -\mathbb{E}_\theta\left[\frac{\partial^2}{\partial\theta^2} \log f(X|\theta)\right]$$
+  </p>
+  <p>
+    This is known as the <strong>Fisher Information equality</strong>, and both sides equal the <strong>Fisher Information</strong> \(\mathcal{I}(\theta)\).
+  </p>
+
+  <h4>Key Insight</h4>
+  <p>
+    Let \(\ell(\theta; X) = \log f(X|\theta)\). Then:
+    <ul>
+      <li>The score is \(\frac{\partial}{\partial\theta} \ell(\theta; X)\)</li>
+      <li>Its expectation is 0 under regularity: \(\mathbb{E}_\theta\left[\frac{\partial}{\partial\theta} \ell(\theta; X)\right] = 0\)</li>
+    </ul>
+    Differentiating under the integral sign:
+  </p>
+  <p>
+    $$\frac{d}{d\theta} \mathbb{E}_\theta\left[\frac{\partial}{\partial\theta} \ell(\theta; X)\right] = 0 = \mathbb{E}_\theta\left[ \frac{\partial^2}{\partial\theta^2} \ell(\theta; X) + \left( \frac{\partial}{\partial\theta} \ell(\theta; X) \right)^2 \right]$$
+  </p>
+  <p>
+    Rearranging gives the desired identity.
+  </p>
+
+  <h4>Interpretation</h4>
+  <p>
+    The identity connects:
+    <ul>
+      <li><strong>LHS</strong>: Variance of the score function</li>
+      <li><strong>RHS</strong>: Negative expectation of curvature of the log-likelihood</li>
+    </ul>
+    Both quantify how much information the data provides about \(\theta\).
+  </p>
+
+  <h4>Summary</h4>
+  <p>
+    $$\mathcal{I}(\theta) = \operatorname{Var}_\theta\left( \frac{d}{d\theta} \log f(X|\theta) \right) = -\mathbb{E}_\theta\left[ \frac{d^2}{d\theta^2} \log f(X|\theta) \right]$$
+  </p>
+</section>
+
+<section>
+  <h4>Cramér–Rao Bound for Vector Parameters</h4>
+  <p>
+    Let:
+    <ul>
+      <li>\(\boldsymbol{\theta} \in \mathbb{R}^k\): vector parameter</li>
+      <li>\(\mathbf{X} \sim f(\mathbf{x}|\boldsymbol{\theta})\)</li>
+      <li>\(\mathbf{W}(\mathbf{X}) \in \mathbb{R}^m\): vector-valued statistic</li>
+    </ul>
+  </p>
+
+  <h4>Matrix Form of the CRLB</h4>
+  <p>
+    $$
+    \operatorname{Var}_{\boldsymbol{\theta}}(\mathbf{W}(\mathbf{X})) \succeq 
+    \left( \frac{d}{d\boldsymbol{\theta}} \mathbb{E}_{\boldsymbol{\theta}}[\mathbf{W}(\mathbf{X})] \right)^\top 
+    \cdot \mathcal{I}(\boldsymbol{\theta})^{-1} \cdot 
+    \left( \frac{d}{d\boldsymbol{\theta}} \mathbb{E}_{\boldsymbol{\theta}}[\mathbf{W}(\mathbf{X})] \right)
+    $$
+  </p>
+
+  <h4>Fisher Information Matrix</h4>
+  <p>
+    $$
+    \mathcal{I}(\boldsymbol{\theta}) = \mathbb{E}_{\boldsymbol{\theta}} \left[ \left( \nabla_{\boldsymbol{\theta}} \log f(\mathbf{X}|\boldsymbol{\theta}) \right) \left( \nabla_{\boldsymbol{\theta}} \log f(\mathbf{X}|\boldsymbol{\theta}) \right)^\top \right]
+    $$
+  </p>
+  <p>
+    Where:
+    $$
+    \nabla_{\boldsymbol{\theta}} \log f(\mathbf{X}|\boldsymbol{\theta}) =
+    \begin{bmatrix}
+    \frac{\partial}{\partial\theta_1} \log f(\mathbf{X}|\boldsymbol{\theta}) \\
+    \vdots \\
+    \frac{\partial}{\partial\theta_k} \log f(\mathbf{X}|\boldsymbol{\theta})
+    \end{bmatrix}
+    $$
+  </p>
+  <p>
+    Alternatively, if regularity conditions permit:
+    $$
+    \mathcal{I}(\boldsymbol{\theta}) = -\mathbb{E}_{\boldsymbol{\theta}} \left[ \nabla_{\boldsymbol{\theta}}^2 \log f(\mathbf{X}|\boldsymbol{\theta}) \right]
+    $$
+  </p>
+
+  <h4>Special Case: Unbiased Estimator</h4>
+  <p>
+    If \(\mathbb{E}_{\boldsymbol{\theta}}[\mathbf{W}(\mathbf{X})] = \boldsymbol{\theta}\), then:
+    $$
+    \operatorname{Var}_{\boldsymbol{\theta}}(\mathbf{W}(\mathbf{X})) \succeq \mathcal{I}(\boldsymbol{\theta})^{-1}
+    $$
+  </p>
+
+  <h4>Full CRLB Expression (Substituted Form)</h4>
+  <p>
+    $$
+    \text{Cov}_{\boldsymbol{\theta}}(\mathbf{W}(\mathbf{X})) \succeq 
+    \left[ \frac{ \partial \mathbb{E}_{\boldsymbol{\theta}}[\mathbf{W}(\mathbf{X})] }{ \partial \boldsymbol{\theta} } \right]^\top
+    \left[
+    \mathbb{E}_{\boldsymbol{\theta}} \left[
+    \left( \frac{ \partial }{ \partial \boldsymbol{\theta} } \log f(\mathbf{X}|\boldsymbol{\theta}) \right)
+    \left( \frac{ \partial }{ \partial \boldsymbol{\theta} } \log f(\mathbf{X}|\boldsymbol{\theta}) \right)^\top
+    \right]
+    \right]^{-1}
+    \left[ \frac{ \partial \mathbb{E}_{\boldsymbol{\theta}}[\mathbf{W}(\mathbf{X})] }{ \partial \boldsymbol{\theta} } \right]
+    $$
+  </p>
 </section>
 
 
